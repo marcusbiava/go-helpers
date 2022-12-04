@@ -9,7 +9,17 @@ go-mod-init:
 
 init: hello go-mod-init
 
-# make git-tag argument=2
-git-tag:
-	git tag "v0.0.$(argument)"
-	git push origin "v0.0.$(argument)"	
+release:
+	$(eval v := $(shell git describe --tags --abbrev=0 | sed -Ee 's/^v|-.*//'))
+ifeq ($(bump), major)
+	$(eval f := 1)
+else ifeq ($(bump), minor)
+	$(eval f := 2)
+else
+	$(eval f := 3)
+endif
+	$(eval newTag := $(shell echo $(v) | awk -F. -v OFS=. -v f=$(f) '{ $$f++ } 1'))
+	@echo $(newTag)
+	@git tag $(newTag)
+	@git commit -am "Bumped to version $(newTag)"
+	@git push --tags
