@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func readLines(path string) []string {
+func ReadLines(path string) []string {
 	file, err := os.Open(path)
 	IfAnErrorOccursCallsLogFatal("readLines", err)
 	defer file.Close()
@@ -19,7 +19,7 @@ func readLines(path string) []string {
 	return lines
 }
 
-func writeLines(lines []string, path string) {
+func WriteLines(lines []string, path string) {
 	file, err := os.Create(path)
 	IfAnErrorOccursCallsLogFatal("writeLines create", err)
 	defer file.Close()

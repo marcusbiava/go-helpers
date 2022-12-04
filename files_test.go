@@ -12,9 +12,9 @@ func Test_files(t *testing.T) {
 
 	data := []string{"1", "2", "3", "4"}
 
-	writeLines(data, fileName)
+	WriteLines(data, fileName)
 
-	newData := readLines(fileName)
+	newData := ReadLines(fileName)
 
 	ok := reflect.DeepEqual(data, newData)
 
