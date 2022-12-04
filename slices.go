@@ -10,3 +10,12 @@ func Contains(s []string, str string) bool {
 
 	return false
 }
+
+func Remove(s []string, str string) []string {
+	for i, v := range s {
+		if v == str {
+			return append(s[:i], s[i+1:]...)
+		}
+	}
+	return s
+}
