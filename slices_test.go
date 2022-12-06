@@ -1,6 +1,7 @@
 package gohelpers
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -33,4 +34,11 @@ func TestRemove(t *testing.T) {
 	if Contains(newSlice, "2") {
 		t.Errorf("Error")
 	}
+}
+
+func TestChunkSlice(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, ChunkSlice(numbers, 2))
+	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, ChunkSlice(numbers, 3))
 }
