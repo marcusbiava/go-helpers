@@ -19,7 +19,7 @@ else
 	$(eval f := 3)
 endif
 	$(eval newTag := $(shell echo $(v) | awk -F. -v OFS=. -v f=$(f) '{ $$f++ } 1'))
-	@echo $(newTag)
-	@git tag $(newTag)
-	@git commit -am "Bumped to version $(newTag)"
+	@echo "v$(newTag)"
+	@git tag "v$(newTag)"
+	@git commit -am "Bumped to version v$(newTag)"
 	@git push --tags
