@@ -42,3 +42,9 @@ func TestChunkSlice(t *testing.T) {
 	assert.Equal(t, [][]int{{1, 2}, {3, 4}, {5, 6}, {7, 8}, {9, 10}}, ChunkSlice(numbers, 2))
 	assert.Equal(t, [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}, ChunkSlice(numbers, 3))
 }
+
+func TestRemoveDuplicate(t *testing.T) {
+	numbers := []int{1, 2, 1, 3, 5, 1, 7, 8, 3, 5}
+
+	assert.Equal(t, []int{1, 2, 3, 5, 7, 8}, RemoveDuplicate(numbers))
+}
