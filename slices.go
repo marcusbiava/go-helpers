@@ -67,3 +67,30 @@ func Intersection[T comparable](slices ...[]T) []T {
 
 	return intersected
 }
+
+func Difference[T comparable](slices ...[]T) []T {
+	possibleDifferences := map[T]int{}
+	nonDifferentElements := map[T]int{}
+
+	for i, slice := range slices {
+		for _, el := range slice {
+			if lastVisitorIndex, elementExists := possibleDifferences[el]; elementExists && lastVisitorIndex != i {
+				nonDifferentElements[el] = i
+			} else if !elementExists {
+				possibleDifferences[el] = i
+			}
+		}
+	}
+
+	differentElements := make([]T, 0)
+
+	for _, slice := range slices {
+		for _, el := range slice {
+			if _, exists := nonDifferentElements[el]; !exists {
+				differentElements = append(differentElements, el)
+			}
+		}
+	}
+
+	return differentElements
+}

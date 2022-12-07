@@ -55,3 +55,10 @@ func TestIntersection(t *testing.T) {
 
 	assert.Equal(t, []int{1, 2, 3}, Intersection(numbers, numbers2))
 }
+
+func TestDifference(t *testing.T) {
+	numbers := []int{1, 2, 1, 3, 5, 1, 7, 8, 3, 5}
+	numbers2 := []int{1, 2, 3, 99}
+
+	assert.Equal(t, []int{5, 7, 8, 5, 99}, Difference(numbers, numbers2))
+}
