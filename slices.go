@@ -44,3 +44,26 @@ func RemoveDuplicate[T string | int](sliceList []T) []T {
 	}
 	return list
 }
+
+func Intersection[T comparable](slices ...[]T) []T {
+	possibleIntersections := map[T]int{}
+	for i, slice := range slices {
+		for _, el := range slice {
+			if i == 0 {
+				possibleIntersections[el] = 0
+			} else if _, elementExists := possibleIntersections[el]; elementExists {
+				possibleIntersections[el] = i
+			}
+		}
+	}
+
+	intersected := make([]T, 0)
+	for _, el := range slices[0] {
+		if lastVisitorIndex, exists := possibleIntersections[el]; exists && lastVisitorIndex == len(slices)-1 {
+			intersected = append(intersected, el)
+			delete(possibleIntersections, el)
+		}
+	}
+
+	return intersected
+}
