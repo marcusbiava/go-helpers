@@ -22,4 +22,5 @@ endif
 	@echo "v$(newTag)"
 	@git tag "v$(newTag)"
 	@git commit -am "Bumped to version v$(newTag)"
+	@git push
 	@git push --tags
