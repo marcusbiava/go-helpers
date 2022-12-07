@@ -94,3 +94,10 @@ func Difference[T comparable](slices ...[]T) []T {
 
 	return differentElements
 }
+
+func Map[T any, R any](slice []T, mapper func(value T, index int, slice []T) R) (mapped []R) {
+	for i, el := range slice {
+		mapped = append(mapped, mapper(el, i, slice))
+	}
+	return mapped
+}

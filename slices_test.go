@@ -2,6 +2,7 @@ package gohelpers
 
 import (
 	"github.com/stretchr/testify/assert"
+	"strconv"
 	"testing"
 )
 
@@ -61,4 +62,20 @@ func TestDifference(t *testing.T) {
 	numbers2 := []int{1, 2, 3, 99}
 
 	assert.Equal(t, []int{5, 7, 8, 5, 99}, Difference(numbers, numbers2))
+}
+
+func TestMap(t *testing.T) {
+	numerals := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	numeralsStr := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+	actualResult := Map(numerals, func(value int, _ int, _ []int) string {
+		return strconv.Itoa(value)
+	})
+	assert.Equal(t, numeralsStr, actualResult)
+
+	actualResult2 := Map(numeralsStr, func(value string, index int, slice []string) int {
+		i, _ := strconv.Atoi(value)
+		return i
+	})
+
+	assert.Equal(t, numerals, actualResult2)
 }
