@@ -21,6 +21,4 @@ endif
 	$(eval newTag := $(shell echo $(v) | awk -F. -v OFS=. -v f=$(f) '{ $$f++ } 1'))
 	@echo "v$(newTag)"
 	@git tag "v$(newTag)"
-	@git commit -am "Bumped to version v$(newTag)"
-	@git push
 	@git push --tags
