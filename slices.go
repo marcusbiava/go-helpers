@@ -1,13 +1,11 @@
 package gohelpers
 
-// Contains checks if a string is present in a slice
-func Contains(s []string, str string) bool {
+func Contains[T comparable](s []T, e T) bool {
 	for _, v := range s {
-		if v == str {
+		if v == e {
 			return true
 		}
 	}
-
 	return false
 }
 

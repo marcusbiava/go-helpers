@@ -7,21 +7,14 @@ import (
 )
 
 func TestContainsTrue(t *testing.T) {
-	slice := []string{"1", "2"}
-	ok := Contains(slice, "1")
+	sliceStr := []string{"1", "2"}
 
-	if ok == false {
-		t.Errorf("Error")
-	}
-}
+	assert.Equal(t, true, Contains(sliceStr, "1"))
+	assert.Equal(t, false, Contains(sliceStr, "3"))
 
-func TestContainsFalse(t *testing.T) {
-	slice := []string{"1", "2"}
-	ok := Contains(slice, "3")
-
-	if ok == true {
-		t.Errorf("Error")
-	}
+	sliceInt := []int{1, 2}
+	assert.Equal(t, true, Contains(sliceInt, 1))
+	assert.Equal(t, false, Contains(sliceInt, 3))
 }
 
 func TestRemove(t *testing.T) {
