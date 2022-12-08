@@ -18,16 +18,8 @@ func TestContainsTrue(t *testing.T) {
 }
 
 func TestRemove(t *testing.T) {
-	slice := []string{"1", "2"}
-	newSlice := Remove(slice, "2")
-
-	if !Contains(newSlice, "1") {
-		t.Errorf("Error")
-	}
-
-	if Contains(newSlice, "2") {
-		t.Errorf("Error")
-	}
+	assert.Equal(t, []string{"1", "3"}, Remove([]string{"1", "2", "3"}, "2"))
+	assert.Equal(t, []int{1, 3}, Remove([]int{1, 2, 3}, 2))
 }
 
 func TestChunkSlice(t *testing.T) {

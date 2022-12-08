@@ -9,9 +9,9 @@ func Contains[T comparable](s []T, e T) bool {
 	return false
 }
 
-func Remove(s []string, str string) []string {
+func Remove[T comparable](s []T, e T) []T {
 	for i, v := range s {
-		if v == str {
+		if v == e {
 			return append(s[:i], s[i+1:]...)
 		}
 	}
