@@ -2,7 +2,7 @@ package gohelpers
 
 import "log"
 
-var logFatalf func(format string, v ...any) = log.Fatalf
+var logFatalf = log.Fatalf
 
 func IfAnErrorOccursCallsLogFatal(message string, err error) {
 	if err != nil {

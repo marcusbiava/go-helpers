@@ -13,7 +13,7 @@ func TestIfAnErrorOccursCallsLogFatal(t *testing.T) {
 		ok = true
 	}
 
-	IfAnErrorOccursCallsLogFatal("Test", errors.New("New errors"))
+	IfAnErrorOccursCallsLogFatal("Test", errors.New("new errors"))
 
 	if ok == false {
 		t.Errorf("Error in AbstractFunction()")
