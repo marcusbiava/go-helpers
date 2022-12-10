@@ -1,14 +1,13 @@
 package gohelpers
 
 import (
+	"github.com/stretchr/testify/assert"
 	"os"
-	"reflect"
 	"testing"
 )
 
-func Test_files(t *testing.T) {
+func TestWriteStringToEndOfFile(t *testing.T) {
 	fileName := "test_files/file1"
-	os.Remove(fileName)
 
 	data := []string{"1", "2", "3", "4"}
 
@@ -16,11 +15,14 @@ func Test_files(t *testing.T) {
 
 	newData := ReadLines(fileName)
 
-	ok := reflect.DeepEqual(data, newData)
+	assert.Equal(t, 4, len(newData))
 
-	if !ok {
-		t.Errorf("Error in Test_files func")
-	}
+	WriteStringToEndOfFile("5", fileName)
 
-	os.Remove(fileName)
+	newData = ReadLines(fileName)
+
+	assert.Equal(t, 5, len(newData))
+
+	err := os.Remove(fileName)
+	IfAnErrorOccursCallsLogFatal("remove", err)
 }
